@@ -11,12 +11,13 @@ import { NavController } from '@ionic/angular';
 
 export class HomePage {
 
-  public salary : number;
-  public dependents: number;
-  private discounts:number;
-  public inss:number;
-  public irrf:number;
-  public liquid_salary:number;
+  public salary : number = 0;
+  public dependents: number = 0;
+  private discounts:number = 0;
+  public inss:number = 0;
+  public irrf:number = 0;
+  public liquid_salary:number = 0;
+  private value: number = 0;
 
   test()
   { 
@@ -102,14 +103,14 @@ export class HomePage {
   }
   public show_inss()
   {
-    return this.inss;
+    return this.inss.toFixed(2)
   }
   public show_irrf()
-  {
-    return this.irrf;
+  { 
+    return this.irrf.toFixed(2);
   }
   public show_liquidsalary()
   {
-    return this.liquid_salary;
+    return this.liquid_salary.toFixed(2);
   }
 }

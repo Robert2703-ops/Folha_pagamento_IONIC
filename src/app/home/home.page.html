@@ -9,23 +9,23 @@
 <ion-content [fullscreen]="true">
   <ion-list class="info">
 
-    <ion-item>
+    <ion-item class="test">
       <ion-label fixed>salario</ion-label>
-      <ion-input type="number" placeholder="0,00" [(ngModel)]="salary"></ion-input>
+      <ion-input type="number" placeholder="0,00" (ionBlur) = "test()" [(ngModel)]="salary"></ion-input>
     </ion-item>
   
     <ion-item>
       <ion-label fixed>dependentes</ion-label>
-      <ion-input type="number" placeholder="0" [(ngModel)]="dependents" ></ion-input>
+      <ion-input type="number" placeholder="0" (ionBlur) = "test()" [(ngModel)]="dependents" ></ion-input>
     </ion-item>
   
     <ion-item>
-      <button ion-button (click) = "test()" icon-start large round color="dark">calcular</button>
+      <button (click) = "test()">calcular</button>
     </ion-item>
 
   </ion-list>
 
-  <ion-grid fixed class="text" sm>
+  <ion-grid fixed class="text ion-justify-content-center" sm>
     <ion-row class="ion-justify-content-center ion-col">
       <ion-col size="3">Campos</ion-col>
       <ion-col size="3">Total</ion-col>
@@ -50,7 +50,6 @@
       <ion-col size="4"> Salario liquido total</ion-col>
       <ion-col size="3"> {{ show_liquidsalary() }} </ion-col>
     </ion-row>
-
   </ion-grid>
 
 </ion-content>
