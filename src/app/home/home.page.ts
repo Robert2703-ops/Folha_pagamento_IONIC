@@ -11,63 +11,63 @@ import { NavController } from '@ionic/angular';
 
 export class HomePage {
 
-  public salary : number = 0;
-  public dependents: number = 0;
-  private discounts:number = 0;
+  public salario : number = 0;
+  public dependentes: number = 0;
+  public outroDiscontos: number = 0;
+  private discontos:number = 0;
   public inss:number = 0;
   public irrf:number = 0;
-  public liquid_salary:number = 0;
-  private value: number = 0;
+  public salarioLiquido:number = 0;
 
-  test()
+  calculo()
   { 
-    this.dependents = this.dependents > 0 ? this.dependents : 0;
+    this.dependentes = this.dependentes > 0 ? this.dependentes : 0;
     let values;
 
     switch (true)
     {
-      case this.salary <= 1751: 
-        this.inss = this.salary * 0.08;
-        this.discounts = this.salary - this.dependents - this.inss;
+      case this.salario <= 1751: 
+        this.inss = this.salario * 0.08;
+        this.discontos = this.salario - this.dependentes - this.inss;
 
-        values = this.irrf_calc(this.discounts)
-
-        this.irrf = values[0] - values[1]
-
-        this.liquid_salary = this.salary - (this.irrf + this.inss)
-        break
-
-      case this.salary <= 2979:
-        this.inss = this.salary * 0.09;
-        this.discounts = this.salary - this.dependents - this.inss;
-
-        values = this.irrf_calc(this.discounts)
+        values = this.irrf_calc(this.discontos)
 
         this.irrf = values[0] - values[1]
-        
-        this.liquid_salary = this.salary - (this.irrf + this.inss)
+
+        this.salarioLiquido = this.salario - (this.irrf + this.inss) - this.outroDiscontos
         break
 
-      case this.salary <= 5839:
-        this.inss = this.salary * 0.11;
-        this.discounts = this.salary - this.dependents - this.inss;
+      case this.salario <= 2979:
+        this.inss = this.salario * 0.09;
+        this.discontos = this.salario - this.dependentes - this.inss;
 
-        values = this.irrf_calc(this.discounts)
+        values = this.irrf_calc(this.discontos)
 
         this.irrf = values[0] - values[1]
         
-        this.liquid_salary = this.salary - (this.irrf + this.inss)
+        this.salarioLiquido = this.salario - (this.irrf + this.inss) - this.outroDiscontos
         break
 
-      case this.salary >= 5840:
+      case this.salario <= 5839:
+        this.inss = this.salario * 0.11;
+        this.discontos = this.salario - this.dependentes - this.inss;
+
+        values = this.irrf_calc(this.discontos)
+
+        this.irrf = values[0] - values[1]
+        
+        this.salarioLiquido = this.salario - (this.irrf + this.inss) - this.outroDiscontos
+        break
+
+      case this.salario >= 5840:
         this.inss = 642
-        this.discounts = this.salary - this.dependents - this.inss;
+        this.discontos = this.salario - this.dependentes - this.inss;
 
-        values = this.irrf_calc(this.discounts)
+        values = this.irrf_calc(this.discontos)
 
         this.irrf = values[0] - values[1]
         
-        this.liquid_salary = this.salary - (this.irrf + this.inss)
+        this.salarioLiquido = this.salario - (this.irrf + this.inss) - this.outroDiscontos
         break
     }
   }
@@ -95,22 +95,5 @@ export class HomePage {
         return [value * 0.275 , 869]
         break
     }
-  }
-
-  public show_salary() 
-  {
-    return this.salary;
-  }
-  public show_inss()
-  {
-    return this.inss.toFixed(2)
-  }
-  public show_irrf()
-  { 
-    return this.irrf.toFixed(2);
-  }
-  public show_liquidsalary()
-  {
-    return this.liquid_salary.toFixed(2);
   }
 }
